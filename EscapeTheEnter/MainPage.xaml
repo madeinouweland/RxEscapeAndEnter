@@ -7,7 +7,12 @@
     Background="CornflowerBlue"
     mc:Ignorable="d">
 
-    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-        <TextBlock x:Name="KeyBlock" Text="Press escape or enter..." FontSize="100" />
+    <StackPanel VerticalAlignment="Center" Background="#44FFFFFF" Width="700" HorizontalAlignment="Center">
+        <TextBox x:Name="Info" Text="Press escape or enter or the buttons" FontSize="30" />
+        <StackPanel Orientation="Horizontal">
+            
+        <Button x:Name="ButtonOK" Content="OK" Width="200"/>
+        <Button x:Name="ButtonCancel" Content="Cancel" Width="200"/>
+        </StackPanel>
     </StackPanel>
 </Page>

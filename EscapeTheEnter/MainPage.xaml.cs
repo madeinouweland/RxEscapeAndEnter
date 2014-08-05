@@ -26,20 +26,19 @@ namespace EscapeTheEnter
                 h => Window.Current.CoreWindow.KeyDown += h, h => Window.Current.CoreWindow.KeyDown -= h)
                 .Select(pattern => pattern.EventArgs);
 
-            _subscriptions.Add(keys.Where(x => x.VirtualKey == VirtualKey.Enter).Subscribe(_ => Accept()));
-            _subscriptions.Add(keys.Where(x => x.VirtualKey == VirtualKey.Escape).Subscribe(_ => Cancel()));
+            var okClicks = Observable.FromEventPattern<RoutedEventHandler, RoutedEventArgs>(h => ButtonOK.Click += h, h => ButtonOK.Click -= h);
+            var cancelClicks = Observable.FromEventPattern<RoutedEventHandler, RoutedEventArgs>(h => ButtonCancel.Click += h, h => ButtonCancel.Click -= h);
+
+            _subscriptions.Add(keys.Where(x => x.VirtualKey == VirtualKey.Enter).Select(_ => true).Merge(okClicks.Select(_ => true)).Subscribe(Close));
+            _subscriptions.Add(keys.Where(x => x.VirtualKey == VirtualKey.Escape).Select(_ => false).Merge(cancelClicks.Select(_ => false)).Subscribe(Close));
         }
 
-        private void Accept()
+        private void Close(bool result)
         {
-            KeyBlock.Text = "Enter -> Accept";
+            Info.Text = "Window close action: " + result;
+            Info.Focus(FocusState.Programmatic);
         }
 
-        private void Cancel()
-        {
-            KeyBlock.Text = "Escape -> Cancel";
-        }
-        
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
