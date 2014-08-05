@@ -4,15 +4,19 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Background="CornflowerBlue"
-    mc:Ignorable="d">
+    mc:Ignorable="d" FontFamily="Courier New" FontWeight="Black" Foreground="#A5A5FF">
 
-    <StackPanel VerticalAlignment="Center" Background="#44FFFFFF" Width="700" HorizontalAlignment="Center">
-        <TextBox x:Name="Info" Text="Press escape or enter or the buttons" FontSize="30" />
-        <StackPanel Orientation="Horizontal">
+    <Grid Background="#4242E7">
+        <TextBox Opacity="0" x:Name="HiddenTextBoxJustToGetTheFocusAwayFromTheClickedButton" />
+        <Border BorderBrush="#A5A5FF" BorderThickness="100">
             
-        <Button x:Name="ButtonOK" Content="OK" Width="200"/>
-        <Button x:Name="ButtonCancel" Content="Cancel" Width="200"/>
-        </StackPanel>
-    </StackPanel>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Width="800">
+                <TextBlock Margin="10" x:Name="Info" Text="PRESS ESCAPE, ENTER OR CLICK THE BUTTONS" FontSize="30" />
+                <StackPanel Margin="10" Orientation="Horizontal">
+                    <Button x:Name="ButtonOK" FontFamily="Courier New" FontSize="30" Content="OK" Width="200"/>
+                    <Button x:Name="ButtonCancel" FontFamily="Courier New" FontSize="30" Content="CANCEL" Width="200"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
 </Page>

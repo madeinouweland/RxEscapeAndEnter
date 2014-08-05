@@ -36,7 +36,7 @@ namespace EscapeTheEnter
         private void Close(bool result)
         {
             Info.Text = "Window close action: " + result;
-            Info.Focus(FocusState.Programmatic);
+            HiddenTextBoxJustToGetTheFocusAwayFromTheClickedButton.Focus(FocusState.Programmatic);
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
